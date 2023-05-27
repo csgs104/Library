@@ -197,7 +197,7 @@ public class BookController : ControllerBase
     }
 
 
-    [HttpDelete("{ISBN:int}"), ActionName("DeleteISBN")]
+    [HttpDelete("{ISBN:int}"), ActionName("DeleteByISBN")]
     public IActionResult DeleteByISBN([FromRoute] int ISBN)
     {
         try

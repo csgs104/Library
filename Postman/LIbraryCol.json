@@ -1,0 +1,704 @@
+{
+	"info": {
+		"_postman_id": "98d7efc8-23f8-44e3-a7bd-e5d173c34265",
+		"name": "LibraryCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27619298"
+	},
+	"item": [
+		{
+			"name": "Initialization",
+			"item": [
+				{
+					"name": "AuthorsInitialization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"givenName\": \"Pippi\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"1992-01-29T00:00:00\"\n  },\n  {\n    \"givenName\": \"Pippo\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2000-05-26T00:00:00\"\n  },\n  {\n    \"givenName\": \"Poppi\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"1980-05-26T00:00:00\"\n  },\n  {\n    \"givenName\": \"Pippa\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2002-02-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Pappi\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2004-02-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Poppo\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2000-02-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Pappa\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2002-02-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Perre\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2002-02-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Picci\",\n    \"familyName\": \"Palla\",\n    \"birthDate\": \"2002-02-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Anonimo\",\n    \"familyName\": \"Qualunquello\",\n    \"birthDate\": \"1998-04-26T00:00:00\"\n  },\n  {\n    \"givenName\": \"Dolores\",\n    \"familyName\": \"Saronna\",\n    \"birthDate\": \"2001-01-20T00:00:00\"\n  },\n  {\n    \"givenName\": \"Sway\",\n    \"familyName\": \"Sway\",\n    \"birthDate\": \"2021-02-21T00:00:00\"\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/PostList",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"PostList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BooksInitialization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"isbn\": 123456,\n        \"authorId\": 1,\n        \"title\": \"BookBlue1\",\n        \"publicationYear\": \"2000-02-26T00:00:00\"\n    },\n    {\n        \"isbn\": 100000,\n        \"authorId\": 7,\n        \"title\": \"BlueBook2\",\n        \"publicationYear\": \"2022-12-20T00:00:00\"\n    },\n    {\n        \"isbn\": 100001,\n        \"authorId\": 7,\n        \"title\": \"BlueBook3\",\n        \"publicationYear\": \"1995-05-05T00:00:00\"\n    },\n    {\n        \"isbn\": 200000,\n        \"authorId\": 1,\n        \"title\": \"Book4\",\n        \"publicationYear\": \"2011-11-11T00:00:00\"\n    },\n    {\n        \"isbn\": 222555,\n        \"authorId\": 3,\n        \"title\": \"Book5\",\n        \"publicationYear\": \"2003-02-03T00:00:00\"\n    },\n    {\n        \"isbn\": 123321,\n        \"authorId\": 6,\n        \"title\": \"Book6\",\n        \"publicationYear\": \"2016-06-26T00:00:00\"\n    },\n    {\n        \"isbn\": 200002,\n        \"authorId\": 4,\n        \"title\": \"Book7\",\n        \"publicationYear\": \"2022-02-26T00:00:00\"\n    },\n    {\n        \"isbn\": 555555,\n        \"authorId\": 4,\n        \"title\": \"Book10\",\n        \"publicationYear\": \"2017-07-17T00:00:00\"\n    },\n    {\n        \"isbn\": 666666,\n        \"authorId\": 4,\n        \"title\": \"Book666\",\n        \"publicationYear\": \"2018-08-18T00:00:00\"\n    },\n    {\n        \"isbn\": 777777,\n        \"authorId\": 3,\n        \"title\": \"BlueBook24\",\n        \"publicationYear\": \"2019-09-19T00:00:00\"\n    },\n    {\n        \"isbn\": 888888,\n        \"authorId\": 1,\n        \"title\": \"BlueBook42\",\n        \"publicationYear\": \"2023-02-23T00:00:00\"\n    },\n    {\n        \"isbn\": 999999,\n        \"authorId\": 4,\n        \"title\": \"BlueBookSSS\",\n        \"publicationYear\": \"2003-03-20T00:00:00\"\n    }\n]\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/PostList",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"PostList"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "GetAllAuthors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body 1\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.be.an('array');",
+									"    ",
+									"    responseBody.forEach(function (item) {",
+									"        pm.expect(item).to.be.an('object');",
+									"        pm.expect(item).to.have.keys('givenName', 'familyName', 'birthDate');",
+									"        pm.expect(item).to.have.property('givenName').that.is.a('string');",
+									"        pm.expect(item).to.have.property('familyName').that.is.a('string');",
+									"        pm.expect(item).to.have.property('birthDate').that.is.a('string');",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body 2\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.be.an('array');",
+									"",
+									"    responseBody.forEach(function (item) {",
+									"        pm.expect(item).to.be.an('object');",
+									"        pm.expect(item.givenName).to.exist;",
+									"        pm.expect(typeof item.givenName).to.equal('string');",
+									"        pm.expect(item.familyName).to.exist;",
+									"        pm.expect(typeof item.familyName).to.equal('string');",
+									"        pm.expect(item.birthDate).to.exist;",
+									"        pm.expect(typeof item.birthDate).to.equal('string');",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/GetAllAuthors",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"GetAllAuthors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData).to.have.keys('givenName', 'familyName', 'birthDate');",
+									"    pm.expect(jsonData).to.have.property('givenName').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('familyName').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('birthDate').that.is.a('string');",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body 2\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");  ",
+									"    var responseBody = pm.response.json(); ",
+									"    pm.expect(responseBody).to.be.an('object'); ",
+									"    pm.expect(responseBody.givenName).to.exist; ",
+									"    pm.expect(typeof responseBody.givenName).to.equal('string'); ",
+									"    pm.expect(responseBody.familyName).to.exist;  ",
+									"    pm.expect(typeof responseBody.familyName).to.equal('string');",
+									"    pm.expect(responseBody.birthDate).to.exist; ",
+									"    pm.expect(typeof responseBody.birthDate).to.equal('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/GetById/10",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"GetById",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida body di risposta\", function () {",
+									"    try {",
+									"        var responseBody = pm.response.json();",
+									"        var numericValue = parseFloat(responseBody);",
+									"        pm.expect(isNaN(numericValue)).to.be.false;",
+									"    } catch (error) {",
+									"        pm.assert.fail(\"corpo di risposta non è JSON valido\");",
+									"    }",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"givenName\": \"Peppe\",\n    \"familyName\": \"Penne\",\n    \"birthDate\": \"2002-02-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/PostOne",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"PostOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Valida body di risposta\", function () {",
+									"    try {",
+									"        var responseBody = pm.response.json();",
+									"        var numericValue = parseFloat(responseBody);",
+									"        pm.expect(isNaN(numericValue)).to.be.false;",
+									"    } catch (error) {",
+									"        pm.assert.fail(\"corpo di risposta non è JSON valido\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"givenName\": \"Pippi\",\n  \"familyName\": \"Pelle\",\n  \"birthDate\": \"2006-02-06\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/PutById/10",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"PutById",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAuthorsById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/DeleteAuthorById/10",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"DeleteAuthorById",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "GetBooksByPage",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.be.an('array');",
+									"    ",
+									"    responseBody.forEach(function (item) {",
+									"        pm.expect(item).to.be.an('object');",
+									"        pm.expect(item).to.have.keys('isbn', 'authorFullName', 'title', 'publicationYear');",
+									"        pm.expect(item).to.have.property('isbn').that.is.a('number');",
+									"        pm.expect(item).to.have.property('authorFullName').that.is.a('string');",
+									"        pm.expect(item).to.have.property('title').that.is.a('string');",
+									"        pm.expect(item).to.have.property('publicationYear').that.is.a('string');",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.be.an('array');",
+									"",
+									"    responseBody.forEach(function (item) {",
+									"        pm.expect(item).to.be.an('object');",
+									"        pm.expect(item.isbn).to.exist;",
+									"        pm.expect(typeof item.isbn).to.equal('number');",
+									"        pm.expect(item.authorFullName).to.exist;",
+									"        pm.expect(typeof item.authorFullName).to.equal('string');",
+									"        pm.expect(item.title).to.exist;",
+									"        pm.expect(typeof item.title).to.equal('string');",
+									"        pm.expect(item.publicationYear).to.exist;",
+									"        pm.expect(typeof item.publicationYear).to.equal('string');",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/GetBooksByPage/4/2",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"GetBooksByPage",
+								"4",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON 1\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.be.an('object');",
+									"    ",
+									"    pm.expect(responseBody).to.be.an('object');",
+									"    pm.expect(responseBody).to.have.property('isbn').that.is.a('number');",
+									"    pm.expect(responseBody).to.have.property('authorFullName').that.is.a('string');",
+									"    pm.expect(responseBody).to.have.property('title').that.is.a('string');",
+									"    pm.expect(responseBody).to.have.property('publicationYear').that.is.a('string');",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del body\", function () {",
+									"    var contentType = pm.response.headers.get(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.be.an('object');",
+									"    pm.expect(responseBody.isbn).to.exist;",
+									"    pm.expect(typeof responseBody.isbn).to.equal('number');",
+									"    pm.expect(responseBody.authorFullName).to.exist;",
+									"    pm.expect(typeof responseBody.authorFullName).to.equal('string');",
+									"    pm.expect(responseBody.title).to.exist;",
+									"    pm.expect(typeof responseBody.title).to.equal('string');",
+									"    pm.expect(responseBody.publicationYear).to.exist;",
+									"    pm.expect(typeof responseBody.publicationYear).to.equal('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/Book/GetByISBN/666666",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"GetByISBN",
+								"666666"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Valida body di risposta\", function () {",
+									"    try {",
+									"        var responseBody = pm.response.json();",
+									"        var numericValue = parseFloat(responseBody);",
+									"        pm.expect(isNaN(numericValue)).to.be.false;",
+									"    } catch (error) {",
+									"        pm.assert.fail(\"corpo di risposta non è JSON valido\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"isbn\": 111111,\n        \"authorId\": 4,\n        \"title\": \"Book101\",\n        \"publicationYear\": \"2017-04-17T00:00:00\"\n    },\n    {\n        \"isbn\": 124421,\n        \"authorId\": 4,\n        \"title\": \"Book999\",\n        \"publicationYear\": \"2013-08-18T00:00:00\"\n    },\n    {\n        \"isbn\": 375573,\n        \"authorId\": 3,\n        \"title\": \"Book969\",\n        \"publicationYear\": \"2017-07-14T00:00:00\"\n    },\n    {\n        \"isbn\": 280082,\n        \"authorId\": 5,\n        \"title\": \"BookBookBook\",\n        \"publicationYear\": \"2023-02-21T00:00:00\"\n    },\n    {\n        \"isbn\": 691196,\n        \"authorId\": 4,\n        \"title\": \"Booksss\",\n        \"publicationYear\": \"2003-03-23T00:00:00\"\n    },\n    {\n        \"isbn\": 961169,\n        \"authorId\": 4,\n        \"title\": \"Koob\",\n        \"publicationYear\": \"2003-03-22T00:00:00\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/PostList",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"PostList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutByISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Valida body di risposta\", function () {",
+									"    try {",
+									"        var responseBody = pm.response.json();",
+									"        var numericValue = parseFloat(responseBody);",
+									"        pm.expect(isNaN(numericValue)).to.be.false;",
+									"    } catch (error) {",
+									"        pm.assert.fail(\"corpo di risposta non è JSON valido\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"GOODJOB\",\n    \"authorId\": 4,\n    \"publicationYear\": \"2022-01-22\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/PutByISBN/666666",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"PutByISBN",
+								"666666"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteByISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida lo status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida lo status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/DeleteByISBN/666666",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"DeleteByISBN",
+								"666666"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
