@@ -1,0 +1,14 @@
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/bin/Debug/net6.0/LibraryData.deps.json
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/bin/Debug/net6.0/LibraryData.runtimeconfig.json
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/bin/Debug/net6.0/LibraryData.dll
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/bin/Debug/net6.0/LibraryData.pdb
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.csproj.AssemblyReference.cache
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.GeneratedMSBuildEditorConfig.editorconfig
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.AssemblyInfoInputs.cache
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.AssemblyInfo.cs
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.csproj.CoreCompileInputs.cache
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.dll
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/refint/LibraryData.dll
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.pdb
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/LibraryData.genruntimeconfig.cache
+/Users/stefanocasagrande/Desktop/Library/Library/LibraryData/obj/Debug/net6.0/ref/LibraryData.dll

@@ -1,0 +1,74 @@
+﻿[
+    {
+        "isbn": 123456,
+        "authorId": 1,
+        "title": "Book1",
+        "publicationYear": "2000-02-26T00:00:00"
+    },
+    {
+        "isbn": 100000,
+        "authorId": 2,
+        "title": "Book2",
+        "publicationYear": "2022-12-20T00:00:00"
+    },
+    {
+        "isbn": 100001,
+        "authorId": 1,
+        "title": "Book3",
+        "publicationYear": "1995-05-05T00:00:00"
+    },
+    {
+        "isbn": 200000,
+        "authorId": 1,
+        "title": "Book4",
+        "publicationYear": "2011-11-11T00:00:00"
+    },
+    {
+        "isbn": 222555,
+        "authorId": 3,
+        "title": "Book5",
+        "publicationYear": "2003-02-03T00:00:00"
+    },
+    {
+        "isbn": 123321,
+        "authorId": 6,
+        "title": "Book6",
+        "publicationYear": "2016-06-26T00:00:00"
+    },
+    {
+        "isbn": 200002,
+        "authorFullName": "Pippolla Pippolino",
+        "title": "Book7",
+        "publicationYear": "2022-02-26T00:00:00"
+    },
+    {
+        "isbn": 555555,
+        "authorId": 4,
+        "title": "Book10",
+        "publicationYear": "2017-07-17T00:00:00"
+    },
+    {
+        "isbn": 666666,
+        "authorId": 4,
+        "title": "Book666",
+        "publicationYear": "2018-08-18T00:00:00"
+    },
+    {
+        "title": "T1",
+        "publicationYear": "2017-07-17T00:00:00",
+        "authorId": 3,
+        "isbn": 777777
+    },
+    {
+        "title": "T2",
+        "publicationYear": "2023-02-23T00:00:00",
+        "authorId": 1,
+        "isbn": 888888
+    },
+    {
+        "title": "SSS",
+        "publicationYear": "2003-03-20T00:00:00",
+        "authorId": 4,
+        "isbn": 999999
+    }
+]

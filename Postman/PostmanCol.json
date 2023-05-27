@@ -1,0 +1,490 @@
+{
+	"info": {
+		"_postman_id": "98d7efc8-23f8-44e3-a7bd-e5d173c34265",
+		"name": "LibraryCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27619298"
+	},
+	"item": [
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "GetAllAuthors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData[0]).to.have.keys('givenName', 'familyName', 'birthDate');",
+									"    pm.expect(jsonData[0]).to.have.property('givenName').that.is.a('string');",
+									"    pm.expect(jsonData[0]).to.have.property('familyName').that.is.a('string');",
+									"    pm.expect(jsonData[0]).to.have.property('birthDate').that.is.a('string');",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/GetAllAuthors",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"GetAllAuthors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON 1\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData).to.have.keys('givenName', 'familyName', 'birthDate');",
+									"    pm.expect(jsonData).to.have.property('givenName').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('familyName').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('birthDate').that.is.a('string');",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/GetById/1",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"GetById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"givenName\": \"Pippollo\",\n    \"familyName\": \"Pippolino\",\n    \"birthDate\": \"2002-02-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/PostOne",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"PostOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"givenName\": \"Pippillo\",\n  \"familyName\": \"Pippolino\",\n  \"birthDate\": \"2006-02-06\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/PutById/1",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"PutById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/DeleteById/2",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"DeleteById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "GetAllBooks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData[0]).to.have.keys('title', 'authorFullName', 'publicationYear', 'isbn');",
+									"    pm.expect(jsonData[0]).to.have.property('title').that.is.a('string');",
+									"    pm.expect(jsonData[0]).to.have.property('authorFullName').that.is.a('string');",
+									"    pm.expect(jsonData[0]).to.have.property('publicationYear').that.is.a('string');",
+									"    pm.expect(jsonData[0]).to.have.property('isbn').that.is.a('string');",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/GetAllBooksByPage/1/2",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"GetAllBooksByPage",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.expect(jsonData).to.have.keys('title', 'authorFullName', 'publicationYear', 'isbn');",
+									"    pm.expect(jsonData).to.have.property('title').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('authorFullName').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('publicationYear').that.is.a('string');",
+									"    pm.expect(jsonData).to.have.property('isbn').that.is.a('string');",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/Book/GetByISBN/2222",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"GetByISBN",
+								"2222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"title\": \"string\",\n    \"authorId\": 0,\n    \"publicationYear\": \"2022-01-22\",\n    \"isbn\": 5005001\n  },\n    {\n    \"title\": \"string\",\n    \"authorId\": 0,\n    \"publicationYear\": \"2022-01-22\",\n    \"isbn\": 5005002\n  },\n    {\n    \"title\": \"string\",\n    \"authorId\": 0,\n    \"publicationYear\": \"2022-01-22\",\n    \"isbn\": 5005003\n  }\n  \n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/PostList",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"PostList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutByISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"string\",\n    \"authorId\": 0,\n    \"publicationYear\": \"2022-01-22\",\n    \"isbn\": 5005001\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Book/PutByISBN/5005001",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Book",
+								"PutByISBN",
+								"5005001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteByISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Valida la struttura del JSON\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/Author/DeleteByISBN/1",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"Author",
+								"DeleteByISBN",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
