@@ -1,74 +1,122 @@
 ﻿[
     {
-        "isbn": 123456,
+        "isbn": 1000000000000,
         "authorId": 1,
         "title": "Book1",
-        "publicationYear": "2000-02-26T00:00:00"
+        "publicationYear": "1991-01-01T00:00:00"
     },
     {
-        "isbn": 100000,
+        "isbn": 1111111111111,
+        "authorId": 1,
+        "title": "BlueBook1",
+        "publicationYear": "2001-01-01T00:00:00"
+    },
+    {
+        "isbn": 1112223222111,
+        "authorId": 1,
+        "title": "GreenBook1",
+        "publicationYear": "2011-01-01T00:00:00"
+    },
+    {
+        "isbn": 1234567654321,
+        "authorId": 1,
+        "title": "RedBook1",
+        "publicationYear": "2021-01-01T00:00:00"
+    },
+    {
+        "isbn": 2000000000000,
         "authorId": 2,
         "title": "Book2",
-        "publicationYear": "2022-12-20T00:00:00"
+        "publicationYear": "1992-02-02T00:00:00"
     },
     {
-        "isbn": 100001,
-        "authorId": 1,
+        "isbn": 2222222222222,
+        "authorId": 2,
+        "title": "BlueBook2",
+        "publicationYear": "2002-02-02T00:00:00"
+    },
+    {
+        "isbn": 3000000000000,
+        "authorFullName": 3,
         "title": "Book3",
+        "publicationYear": "1993-03-03T00:00:00"
+    },
+    {
+        "isbn": 3333333333333,
+        "authorFullName": 3,
+        "title": "BlueBook3",
+        "publicationYear": "2003-03-03T00:00:00"
+    },
+    {
+        "isbn": 4000000000000,
+        "authorFullName": 4,
+        "title": "Book4",
+        "publicationYear": "1994-04-04T00:00:00"
+    },
+    {
+        "isbn": 4444444444444,
+        "authorId": 4,
+        "title": "BlueBook10",
+        "publicationYear": "2004-04-04T00:00:00"
+    },
+    {
+        "isbn": 5000000000000,
+        "authorFullName": 5,
+        "title": "Book5",
         "publicationYear": "1995-05-05T00:00:00"
     },
     {
-        "isbn": 200000,
-        "authorId": 1,
-        "title": "Book4",
-        "publicationYear": "2011-11-11T00:00:00"
+        "isbn": 5555555555555,
+        "authorId": 5,
+        "title": "BlueBook5",
+        "publicationYear": "2005-05-05T00:00:00"
     },
     {
-        "isbn": 222555,
-        "authorId": 3,
-        "title": "Book5",
-        "publicationYear": "2003-02-03T00:00:00"
-    },
-    {
-        "isbn": 123321,
-        "authorId": 6,
+        "isbn": 6000000000000,
+        "authorFullName": 6,
         "title": "Book6",
-        "publicationYear": "2016-06-26T00:00:00"
+        "publicationYear": "1996-06-06T00:00:00"
     },
     {
-        "isbn": 200002,
-        "authorFullName": "Pippolla Pippolino",
+        "isbn": 6666666666666,
+        "authorId": 6,
+        "title": "BlueBook6",
+        "publicationYear": "2006-06-06T00:00:00"
+    },
+    {
+        "isbn": 7000000000000,
+        "authorFullName": 7,
         "title": "Book7",
-        "publicationYear": "2022-02-26T00:00:00"
+        "publicationYear": "1997-07-07T00:00:00"
     },
     {
-        "isbn": 555555,
-        "authorId": 4,
-        "title": "Book10",
-        "publicationYear": "2017-07-17T00:00:00"
+        "isbn": 7777777777777,
+        "authorId": 7,
+        "title": "BlueBook7",
+        "publicationYear": "2007-07-07T00:00:00"
     },
     {
-        "isbn": 666666,
-        "authorId": 4,
-        "title": "Book666",
-        "publicationYear": "2018-08-18T00:00:00"
+        "isbn": 8000000000000,
+        "authorFullName": 8,
+        "title": "Book8",
+        "publicationYear": "1998-08-08T00:00:00"
     },
     {
-        "title": "T1",
-        "publicationYear": "2017-07-17T00:00:00",
-        "authorId": 3,
-        "isbn": 777777
+        "isbn": 8888888888888,
+        "authorId": 8,
+        "title": "BlueBook8",
+        "publicationYear": "2008-08-08T00:00:00"
     },
     {
-        "title": "T2",
-        "publicationYear": "2023-02-23T00:00:00",
-        "authorId": 1,
-        "isbn": 888888
+        "isbn": 9000000000000,
+        "authorFullName": 9,
+        "title": "Book9",
+        "publicationYear": "1999-09-09T00:00:00"
     },
     {
-        "title": "SSS",
-        "publicationYear": "2003-03-20T00:00:00",
-        "authorId": 4,
-        "isbn": 999999
+        "isbn": 9999999999999,
+        "authorId": 9,
+        "title": "BlueBook9",
+        "publicationYear": "2009-09-09T00:00:00"
     }
 ]

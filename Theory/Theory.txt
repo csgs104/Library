@@ -1,34 +1,34 @@
 1. Descrivere le tre principali tecnologie che compongono il Web.
 Il Web è la più potente e diffusa piattaforma distribuita per elaborazione distribuita e le tre principali tecnologie che la costituiscono sono:
 • URL (Uniform Resource Locator) è una sequenza di caratteri che identifica univocamente l'indirizzo di una risorsa su una rete di computer.
-• HTTP (HyperText Transfer Protocol), è un protocollo a livello applicativo usato come principale sistema per la trasmissione d'informazioni sul web ovvero in un'architettura tipica client-server.
-• XML (eXtensible Markup Language) è linguaggio di markup, consente di definire e controllare il significato degli elementi contenuti in un documento o in un testo. Utilizza e permette di definire tags
+• HTTP (HyperText Transfer Protocol), è un protocollo a livello applicativo usato come principale sistema per la trasmissione d'informazioni sul web, ovvero in un'architettura tipica client-server.
+• XML (eXtensible Markup Language) è linguaggio di markup, consente di definire e controllare il significato degli elementi contenuti in un documento o in un testo. Utilizza e permette di definire tags.
 
-2. Definire il concetto di "Risorsa" e "rappresentazione" nel contesto Web.
+2. Definire il concetto di "risorsa" e "rappresentazione" nel contesto Web.
 I concetti di "risorsa" e "rappresentazione" sono fondamentali per comprendere il funzionamento del Web.
 Una risorsa è un elemento o un'entità identificabile nel Web. Le risorse possono essere di diversi tipi, come pagine web, immagini, documenti, video, servizi web e così via. Ogni risorsa è identificata da un URI (Uniform Resource Identifier), che ne fornisce un identificativo univoco nel contesto del Web.
 La rappresentazione è un'istanza specifica di una risorsa che viene trasmessa attraverso il Web. Una rappresentazione è una versione o una visualizzazione di una risorsa in un determinato formato. Le rappresentazioni consentono alle risorse di essere visualizzate o manipolate dai client attraverso le richieste e le risposte HTTP.
 Quando un client (come un browser web) richiede una risorsa tramite un URI, il server web risponde fornendo una rappresentazione della risorsa corrispondente. Il server può generare diverse rappresentazioni della stessa risorsa, in base alle capacità del client o alle preferenze specificate nella richiesta.
-Quindi, nel contesto del Web, una risorsa è un'entità identificabile, mentre una rappresentazione è una versione specifica di quella risorsa espressa in un determinato formato. Le rappresentazioni consentono alle risorse di essere trasferite e visualizzate attraverso il Web.
+Quindi, una risorsa è un'entità identificabile, mentre una rappresentazione è una versione specifica di quella risorsa espressa in un determinato formato. Le rappresentazioni consentono alle risorse di essere trasferite e visualizzate attraverso il Web.
 
 3. Illustrare il principio HATEOS.
 Il principio HATEOAS (Hypermedia as the Engine of Application State) è un principio di design architetturale fondamentale per i sistemi RESTful (Representational State Transfer) nel contesto del Web.
 Secondo il principio HATEOAS, un'applicazione RESTful dovrebbe fornire ai client tutte le informazioni necessarie per navigare e scoprire le funzionalità dell'applicazione attraverso l'utilizzo dei collegamenti ipertestuali (hyperlinks) presenti nelle rappresentazioni delle risorse.
 Ovvero, invece di aspettarsi che il client abbia conoscenza predefinita delle possibili azioni o dei percorsi da seguire, l'applicazione RESTful fornisce al client link ipertestuali con i quali può interagire. Questi collegamenti consentono al client di scoprire e accedere alle risorse correlate o alle azioni disponibili.
 Il principio HATEOAS promuove una maggiore scopribilità, flessibilità e disaccoppiamento tra il client e il server. I client possono adattarsi dinamicamente alle modifiche dell'applicazione, poiché possono seguire i link forniti dal server per scoprire e utilizzare le funzionalità offerte. Inoltre, questo principio favorisce l'evoluzione dell'applicazione, in quanto il server può introdurre nuovi link o modificare le relazioni tra le risorse senza rompere le applicazioni client esistenti.
-Quindi, il principio HATEOAS sottolinea l'importanza di includere collegamenti ipertestuali nelle rappresentazioni delle risorse per consentire ai client di scoprire e interagire dinamicamente con l'applicazione, senza dipendere da conoscenze predefinite o endpoint fissi. Questo principio promuove una maggiore flessibilità, scalabilità e adattabilità delle applicazioni RESTful nel contesto del Web.
+Quindi, il principio HATEOAS sottolinea l'importanza di includere collegamenti ipertestuali nelle rappresentazioni delle risorse per consentire ai client di scoprire e interagire dinamicamente con l'applicazione, senza dipendere da conoscenze predefinite o endpoint fissi. Promuove una maggiore flessibilità, scalabilità e adattabilità delle applicazioni RESTful nel contesto del Web.
 
 4. Spiegare le quattro parti che compongono le richieste HTTP e le tre parti che compongono le risposte HTTP.
-Le richieste HTTP e le risposte HTTP sono i due componenti fondamentali della comunicazione tra un client e un server nel protocollo HTTP (Hypertext Transfer Protocol). Ogni richiesta e risposta HTTP è suddivisa in parti specifiche che contengono informazioni rilevanti per la comunicazione. 
+Le richieste HTTP e le risposte HTTP sono i due componenti fondamentali della comunicazione tra un client e un server nel protocollo HTTP. Ogni richiesta e risposta HTTP è suddivisa in parti specifiche che contengono informazioni rilevanti per la comunicazione. 
 Le quattro parti delle richieste HTTP sono:
 1. HТТР VERB: HTTP definisce un insieme di metodi di richiesta per indicare l'azione desiderata da eseguire per una determinata risorsa.
 2. TARGET URL: per esempio, http://www.siteweb.com/
 3. REQUEST HEADER: si tratta di una serie di coppie chiave-valore che descrivono l'entità-corpo e la risposta HTTP in generale.
-4. ENTITY BODY: questo è un documento scritto in un formato di dati, che il server dovrebbe comprendere
+4. ENTITY BODY: questo è un documento scritto in un formato di dati, che il server dovrebbe comprendere.
 Le tre parti delle risposte HTTP sono:
-1. STATUS CODE: questo è un numero di tre cifre che riassume come è andata la richiesta. Il codice di risposta è la prima cosa che un client API vede e imposta il tono per il resto della risposta. Per esempio, il codice di una corretta risposta è 200 Ok
+1. STATUS CODE: questo è un numero di tre cifre che riassume come è andata la richiesta. Il codice di risposta è la prima cosa che un client API vede e imposta il tono per il resto della risposta. Per esempio, il codice di una corretta risposta è 200 Ok.
 2. RESPONSE HEADER: si tratta di una serie di coppie chiave-valore che descrivono l'entità-corpo e la risposta HTTP in generale.
-3. ENTITY BODY: questo è un documento scritto in un formato di dati, che il cliente dovrebbe comprendere
+3. ENTITY BODY: questo è un documento scritto in un formato di dati, che il client dovrebbe comprendere.
 
 5. Spiegare la differenza tra un Model-View-Controller (MVC) e un'API.
 Il Model-View-Controller (MVC) e le API (Application Programming Interface) sono due concetti distinti nel contesto dello sviluppo software. MVC è un design pattern architetturale che organizza il codice all'interno di un'applicazione, separando la logica di presentazione, la logica di business e la gestione degli eventi. Le API, definiscono un'interfaccia per consentire la comunicazione e lo scambio di dati tra le diverse componenti software o tra applicazioni esterne, consentendo l'integrazione e l'utilizzo delle funzionalità fornite da un'applicazione o un servizio.
