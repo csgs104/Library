@@ -5,6 +5,7 @@ using Abstract;
 using Data;
 using Models;
 using Models.Extensions;
+using static System.Reflection.Metadata.BlobBuilder;
 
 public class AuthorGateway : IAuthorGateway
 {
@@ -34,7 +35,11 @@ public class AuthorGateway : IAuthorGateway
     public IEnumerable<Author>? GetByPage(int size, int page)
     {
         var authors = _context.Authors.AsNoTracking();
-        return authors.Skip(size * page).Take(size);
+        if (size * page >= authors.Count()) return null;
+
+        var output = authors.Skip(size * page);
+        var pagesize = output.Count();
+        return output.Take(pagesize < size ? pagesize : size);
     }
 
     public Author? GetById(int id)

@@ -1,57 +1,74 @@
 ﻿[
-    {
-        "givenName": "Weppa",
-        "familyName": "Palla",
-        "birthDate": "1971-01-01"
-    },
-    {
-        "givenName": "Weppe",
-        "familyName": "Palla",
-        "birthDate": "1972-02-02"
-    },
-    {
-        "givenName": "Weppi",
-        "familyName": "Palla",
-        "birthDate": "1973-03-03"
-    },
-    {
-        "givenName": "Weppo",
-        "familyName": "Palla",
-        "birthDate": "1974-04-04"
-    },
-    {
-        "givenName": "Weppu",
-        "familyName": "Palla",
-        "birthDate": "1975-05-05"
-    },
-    {
-        "givenName": "Xorra",
-        "familyName": "Varra",
-        "birthDate": "1976-06-06"
-    },
-    {
-        "givenName": "Xorre",
-        "familyName": "Varra",
-        "birthDate": "1977-07-07"
-    },
-    {
-        "givenName": "Xorri",
-        "familyName": "Varra",
-        "birthDate": "1978-08-08"
-    },
-    {
-        "givenName": "Xorro",
-        "familyName": "Varra",
-        "birthDate": "1979-09-09"
-    },
-    {
-        "givenName": "Xorru",
-        "familyName": "Varra",
-        "birthDate": "1980-10-10"
-    },
-    {
-        "givenName": "Anonimo",
-        "familyName": "Qualunquello",
-        "birthDate": "1998-04-26"
-    }
+    // INITIALIZATION (GET)
+    [
+        {
+            "givenName": "Weppa",
+            "familyName": "Palla",
+            "birthDate": "1971-01-01"
+        },
+        {
+            "givenName": "Weppe",
+            "familyName": "Palla",
+            "birthDate": "1972-02-02"
+        },
+        {
+            "givenName": "Weppi",
+            "familyName": "Palla",
+            "birthDate": "1973-03-03"
+        },
+        {
+            "givenName": "Weppo",
+            "familyName": "Palla",
+            "birthDate": "1974-04-04"
+        },
+        {
+            "givenName": "Weppu",
+            "familyName": "Palla",
+            "birthDate": "1975-05-05"
+        },
+        {
+            "givenName": "Xorra",
+            "familyName": "Varra",
+            "birthDate": "1976-06-06"
+        },
+        {
+            "givenName": "Xorre",
+            "familyName": "Varra",
+            "birthDate": "1977-07-07"
+        },
+        {
+            "givenName": "Xorri",
+            "familyName": "Varra",
+            "birthDate": "1978-08-08"
+        },
+        {
+            "givenName": "Xorro",
+            "familyName": "Varra",
+            "birthDate": "1979-09-09"
+        },
+        {
+            "givenName": "Xorru",
+            "familyName": "Varra",
+            "birthDate": "1980-10-10"
+        },
+        {
+            "givenName": "Anonimo",
+            "familyName": "Qualunquello",
+            "birthDate": "1998-04-26"
+        }
+    ],
+
+    // INSERT, UPDATE, DELETE
+    [
+        {
+            "givenName": "Anonimino",
+            "familyName": "Qualunquello",
+            "birthDate": "2000-02-22"
+        },
+        {
+            "givenName": "Dolores",
+            "familyName": "Soranno",
+            "birthDate": "2000-12-10"
+        }
+    ]
 ]

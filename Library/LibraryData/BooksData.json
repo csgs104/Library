@@ -1,122 +1,178 @@
 ﻿[
-    {
-        "title": "Book1",
-        "publicationDate": "1991-01-01",
-        "authorId": 1,
-        "isbn": "ISBN13-978-0-306-40615-7"
-    },
-    {
-        "title": "BlueBook1",
-        "publicationDate": "2001-01-01",
-        "authorId": 1,
-        "isbn": "ISBN13-978-1-84356-028-4"
-    },
-    {
-        "title": "GreenBook1",
-        "publicationDate": "2011-01-01",
-        "authorId": 1,
-        "isbn": "ISBN13-978-0-9767736-6-0"
-    },
-    {
-        "title": "RedBook1",
-        "publicationDate": "2021-01-01",
-        "authorId": 1,
-        "isbn": "ISBN13-978-0-13-235088-4"
-    },
-    {
-        "title": "Book2",
-        "publicationDate": "1992-02-02",
-        "authorId": 2,
-        "isbn": "ISBN13-978-0-201-53082-1"
-    },
-    {
-        "title": "BlueBook2",
-        "publicationDate": "2002-02-02",
-        "authorId": 2,
-        "isbn": "ISBN13-978-0-7356-4877-1"
-    },
-    {
-        "title": "Book3",
-        "publicationDate": "1993-03-03",
-        "authorId": 3,
-        "isbn": "ISBN13-978-0-596-52068-7"
-    },
-    {
-        "title": "BlueBook3",
-        "publicationDate": "2003-03-03",
-        "authorId": 3,
-        "isbn": "ISBN13-978-0-07-352332-3"
-    },
-    {
-        "title": "Book4",
-        "publicationDate": "1994-04-04",
-        "authorId": 4,
-        "isbn": "ISBN13-978-0-321-97205-9"
-    },
-    {
-        "title": "BlueBook10",
-        "publicationDate": "2004-04-04",
-        "authorId": 4,
-        "isbn": "ISBN13-978-0-13-277289-0"
-    },
-    {
-        "title": "Book5",
-        "publicationDate": "1995-05-05",
-        "authorId": 5,
-        "isbn": "ISBN13-978-0-671-02735-3"
-    },
-    {
-        "title": "BlueBook5",
-        "publicationDate": "2005-05-05",
-        "authorId": 5,
-        "isbn": "ISBN13-978-0-345-35388-9"
-    },
-    {
-        "title": "Book6",
-        "publicationDate": "1996-06-06",
-        "authorId": 6,
-        "isbn": "ISBN13-978-0-14-044924-2"
-    },
-    {
-        "title": "BlueBook6",
-        "publicationDate": "2006-06-06",
-        "authorId": 6,
-        "isbn": "ISBN13-978-0-8044-2957-6"
-    },
-    {
-        "title": "Book7",
-        "publicationDate": "1997-07-07",
-        "authorId": 7,
-        "isbn": "ISBN13-978-0-06-112241-5"
-    },
-    {
-        "title": "BlueBook7",
-        "publicationDate": "2007-07-07",
-        "authorId": 7,
-        "isbn": "ISBN13-978-0-451-17174-7"
-    },
-    {
-        "title": "Book8",
-        "publicationDate": "1998-08-08",
-        "authorId": 8,
-        "isbn": "ISBN13-978-0-385-50420-8"
-    },
-    {
-        "title": "BlueBook8",
-        "publicationDate": "2008-08-08",
-        "authorId": 8,
-        "isbn": "ISBN13-978-0-399-53536-5"
-    },
-    {
-        "title": "Book9",
-        "publicationDate": "1999-09-09",
-        "authorId": 9,
-        "isbn": "ISBN13-978-0-553-38108-2"
-    },
-    {
-        "title": "BlueBook9",
-        "publicationDate": "2009-09-09",
-        "authorId": 9,
-        "isbn": "ISBN13-978-0-312-14494-8"
-    }
+    // INITIALIZATION (GET)
+    [
+        {
+            "title": "Book1",
+            "publicationDate": "1991-01-01",
+            "authorId": 1,
+            "isbn": "ISBN13-978-0-306-40615-7"
+        },
+        {
+            "title": "BlueBook1",
+            "publicationDate": "2001-01-01",
+            "authorId": 1,
+            "isbn": "ISBN13-978-1-84356-028-4"
+        },
+        {
+            "title": "GreenBook1",
+            "publicationDate": "2011-01-01",
+            "authorId": 1,
+            "isbn": "ISBN13-978-0-9767736-6-0"
+        },
+        {
+            "title": "RedBook1",
+            "publicationDate": "2021-01-01",
+            "authorId": 1,
+            "isbn": "ISBN13-978-0-13-235088-4"
+        },
+        {
+            "title": "Book2",
+            "publicationDate": "1992-02-02",
+            "authorId": 2,
+            "isbn": "ISBN13-978-0-201-53082-1"
+        },
+        {
+            "title": "BlueBook2",
+            "publicationDate": "2002-02-02",
+            "authorId": 2,
+            "isbn": "ISBN13-978-0-7356-4877-1"
+        },
+        {
+            "title": "Book3",
+            "publicationDate": "1993-03-03",
+            "authorId": 3,
+            "isbn": "ISBN13-978-0-596-52068-7"
+        },
+        {
+            "title": "BlueBook3",
+            "publicationDate": "2003-03-03",
+            "authorId": 3,
+            "isbn": "ISBN13-978-0-07-352332-3"
+        },
+        {
+            "title": "Book4",
+            "publicationDate": "1994-04-04",
+            "authorId": 4,
+            "isbn": "ISBN13-978-0-321-97205-9"
+        },
+        {
+            "title": "BlueBook4",
+            "publicationDate": "2004-04-04",
+            "authorId": 4,
+            "isbn": "ISBN13-978-0-13-277289-0"
+        },
+        {
+            "title": "Book5",
+            "publicationDate": "1995-05-05",
+            "authorId": 5,
+            "isbn": "ISBN13-978-0-671-02735-3"
+        },
+        {
+            "title": "BlueBook5",
+            "publicationDate": "2005-05-05",
+            "authorId": 5,
+            "isbn": "ISBN13-978-0-345-35388-9"
+        },
+        {
+            "title": "Book6",
+            "publicationDate": "1996-06-06",
+            "authorId": 6,
+            "isbn": "ISBN13-978-0-14-044924-2"
+        },
+        {
+            "title": "BlueBook6",
+            "publicationDate": "2006-06-06",
+            "authorId": 6,
+            "isbn": "ISBN13-978-0-8044-2957-6"
+        },
+        {
+            "title": "Book7",
+            "publicationDate": "1997-07-07",
+            "authorId": 7,
+            "isbn": "ISBN13-978-0-06-112241-5"
+        },
+        {
+            "title": "BlueBook7",
+            "publicationDate": "2007-07-07",
+            "authorId": 7,
+            "isbn": "ISBN13-978-0-451-17174-7"
+        },
+        {
+            "title": "Book8",
+            "publicationDate": "1998-08-08",
+            "authorId": 8,
+            "isbn": "ISBN13-978-0-385-50420-8"
+        },
+        {
+            "title": "BlueBook8",
+            "publicationDate": "2008-08-08",
+            "authorId": 8,
+            "isbn": "ISBN13-978-0-399-53536-5"
+        },
+        {
+            "title": "Book9",
+            "publicationDate": "1999-09-09",
+            "authorId": 9,
+            "isbn": "ISBN13-978-0-553-38108-2"
+        },
+        {
+            "title": "BlueBook9",
+            "publicationDate": "2009-09-09",
+            "authorId": 9,
+            "isbn": "ISBN13-978-0-312-14494-8"
+        }
+
+    ],
+
+    // INSERT, UPDATE, DELETE
+    [
+        {
+            "title": "GreenBook2",
+            "publicationDate": "2012-02-02",
+            "authorId": 2,
+            "isbn": "ISBN13-978-0-7499-8133-4"
+        },
+        {
+            "title": "GreenBook3",
+            "publicationDate": "2013-03-03",
+            "authorId": 3,
+            "isbn": "ISBN13-978-0-451-46800-9"
+        },
+        {
+            "title": "GreenBook4",
+            "publicationDate": "2014-04-04",
+            "authorId": 4,
+            "isbn": "ISBN13-978-0-571-22063-9"
+        },
+        {
+            "title": "GreenBook5",
+            "publicationDate": "2015-05-05",
+            "authorId": 5,
+            "isbn": "ISBN13-978-0-316-27277-4"
+        },
+        {
+            "title": "GreenBook6",
+            "publicationDate": "2016-06-06",
+            "authorId": 6,
+            "isbn": "ISBN13-978-0-525-95414-9"
+        },
+        {
+            "title": "GreenBook7",
+            "publicationDate": "2017-07-07",
+            "authorId": 7,
+            "isbn": "ISBN13-978-0-14-311001-4"
+        },
+        {
+            "title": "GreenBook7",
+            "publicationDate": "2018-08-08",
+            "authorId": 8,
+            "isbn": "ISBN13-978-0-373-20092-5"
+        },
+        {
+            "title": "GreenBook7",
+            "publicationDate": "2019-09-09",
+            "authorId": 9,
+            "isbn": "ISBN13-978-0-517-88431-7"
+        }
+    ]
 ]

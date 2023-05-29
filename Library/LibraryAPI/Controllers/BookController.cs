@@ -51,7 +51,7 @@ public class BookController : ControllerBase
 
             if (books is null)
             {
-                return BadRequest("Book Not Found");
+                return BadRequest("Books Not Found");
             }
 
             var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));

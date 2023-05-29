@@ -23,10 +23,14 @@ public class BookGateway : IBookGateway
         return book;
     }
 
-    public IEnumerable<Book> GetByPage(int size, int page)
+    public IEnumerable<Book>? GetByPage(int size, int page)
     {
-        var book = _context.Books.AsNoTracking().Include(b => b.Author);
-        return book.Skip(size * page).Take(size);
+        var books = _context.Books.AsNoTracking().Include(b => b.Author);
+        if (size * page >= books.Count()) return null;
+
+        var output = books.Skip(size * page);
+        var pagesize = output.Count();
+        return output.Take(pagesize < size ? pagesize : size);
     }
 
     public Book? GetById(int id)
