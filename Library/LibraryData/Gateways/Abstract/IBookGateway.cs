@@ -4,6 +4,6 @@ using Models;
 
 public interface IBookGateway : IGateway<Book>
 {
-    Book? GetByISBN(int ISBN);
-    Book DeleteByISBN(int ISBN);
+    Book? GetByISBN(string ISBN);
+    Book DeleteByISBN(string ISBN);
 }

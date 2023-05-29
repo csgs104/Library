@@ -4,5 +4,7 @@ namespace LibraryData.Gateways.Abstract;
 
 public interface IAuthorGateway : IGateway<Author>
 {
-    Author DeleteAuthor(int id);
+    public IEnumerable<Author>? GetAllAuthors();
+    public Author? GetAuthorById(int id);
+    public Author DeleteAuthor(int id);
 }

@@ -4,14 +4,13 @@ using Models;
 
 public interface IGateway<TEntity> where TEntity : Entity
 {
-    IEnumerable<TEntity> GetAll();
-    IEnumerable<TEntity>? GetAllEntities();
-    IEnumerable<TEntity>? GetEntitiesByPage(int page, int size);
+    public IEnumerable<TEntity> GetAll();
+    public IEnumerable<TEntity>? GetByPage(int page, int size);
+    public TEntity? GetById(int id);
 
-    IEnumerable<TEntity>? GetByIds(IEnumerable<int> ids);
-    TEntity? GetById(int id);
-    TEntity Insert(TEntity entity);
-    IEnumerable<TEntity>? InsertMulti(IEnumerable<TEntity>? entities);
-    TEntity Update(TEntity entity);
-    TEntity Delete(int id);
+    public TEntity Insert(TEntity entity);
+    public IEnumerable<TEntity>? InsertMulti(IEnumerable<TEntity>? entities);
+
+    public TEntity Update(TEntity entity);
+    public TEntity Delete(int id);
 }

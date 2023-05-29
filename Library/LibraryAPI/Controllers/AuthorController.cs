@@ -18,8 +18,8 @@ public class AuthorController : ControllerBase
         _logger = logger;
     }
 
-
-    [HttpGet, ActionName("GetAll")]
+    // GET
+    [HttpGet, ActionName(nameof(GetAll))]
     public IActionResult GetAll()
     {
         try
@@ -40,13 +40,12 @@ public class AuthorController : ControllerBase
         }
     }
 
-
-    [HttpGet, ActionName("GetAllAuthors")]
+    [HttpGet, ActionName(nameof(GetAllAuthors))]
     public IActionResult GetAllAuthors()
     {
         try
         {
-            var authors = _authorGateway.GetAllEntities();
+            var authors = _authorGateway.GetAllAuthors();
 
             if (authors is null)
             {
@@ -62,13 +61,12 @@ public class AuthorController : ControllerBase
         }
     }
 
-
-    [HttpGet("{size:int}/{page:int}"), ActionName("GetAuthorsByPage")]
-    public IActionResult GetAuthorsByPage([FromRoute] int size, [FromRoute] int page)
+    [HttpGet("{size:int}/{page:int}"), ActionName(nameof(GetByPage))]
+    public IActionResult GetByPage([FromRoute] int size, [FromRoute] int page)
     {
         try
         {
-            var authors = _authorGateway.GetEntitiesByPage(size, page);
+            var authors = _authorGateway.GetByPage(size, page);
 
             if (authors is null)
             {
@@ -84,8 +82,7 @@ public class AuthorController : ControllerBase
         }
     }
 
-
-    [HttpGet("{id:int}"), ActionName("GetById")]
+    [HttpGet("{id:int}"), ActionName(nameof(GetById))]
     public IActionResult GetById([FromRoute] int id)
     {
         try
@@ -106,9 +103,30 @@ public class AuthorController : ControllerBase
         }
     }
 
+    [HttpGet("{id:int}"), ActionName(nameof(GetAuthorById))]
+    public IActionResult GetAuthorById([FromRoute] int id)
+    {
+        try
+        {
+            var author = _authorGateway.GetAuthorById(id);
 
-    [HttpPost, ActionName("PostOne")]
-    public IActionResult Post([FromBody] AuthorDto authorDto)
+            if (author is null)
+            {
+                return BadRequest("Author Not Found");
+            }
+
+            var authorDto = new AuthorDto(author.GivenName, author.FamilyName, author.BirthDate);
+            return Ok(authorDto);
+        }
+        catch
+        {
+            return Problem();
+        }
+    }
+
+    // POST
+    [HttpPost, ActionName(nameof(PostOne))]
+    public IActionResult PostOne([FromBody] AuthorDto dto)
     {
         try
         {
@@ -116,7 +134,7 @@ public class AuthorController : ControllerBase
 
             var count = 0;
             //
-            author = new Author(null, authorDto.GivenName, authorDto.FamilyName, authorDto.BirthDate);
+            author = new Author(null, dto.GivenName, dto.FamilyName, dto.BirthDate);
             var authorIn = _authorGateway.Insert(author);
             count++;
 
@@ -128,40 +146,15 @@ public class AuthorController : ControllerBase
         }
     }
 
-
-    [HttpPost, ActionName("PostListWrong")]
-    public IActionResult PostWrong([FromBody] IList<AuthorDto> authorDtos)
-    {
-        try
-        {
-            Author author;
-
-            var count = 0;
-            foreach (var authorDto in authorDtos)
-            {
-                author = new Author(null, authorDto.GivenName, authorDto.FamilyName, authorDto.BirthDate);
-                var authorIn = _authorGateway.Insert(author);
-                count++;
-            }
-
-            return Ok(count);
-        }
-        catch
-        {
-            return Problem();
-        }
-    }
-
-
-    [HttpPost, ActionName("PostList")]
-    public IActionResult Post([FromBody] IList<AuthorDto> authorDtos)
+    [HttpPost, ActionName(nameof(PostMulti))]
+    public IActionResult PostMulti([FromBody] IList<AuthorDto> dtos)
     {
         try
         {
             var authors = new List<Author>();
-            foreach (var authorDto in authorDtos)
+            foreach (var dto in dtos)
             {
-                authors.Add(new Author(null, authorDto.GivenName, authorDto.FamilyName, authorDto.BirthDate));
+                authors.Add(new Author(null, dto.GivenName, dto.FamilyName, dto.BirthDate));
             }
             _authorGateway.InsertMulti(authors);
             return Ok(authors.Count);
@@ -172,8 +165,32 @@ public class AuthorController : ControllerBase
         }
     }
 
+    // PUT
+    [HttpPut("{id:int}"), ActionName(nameof(PutById))]
+    public IActionResult PutById([FromRoute] int id, [FromBody] AuthorDto dto)
+    {
+        try
+        {
+            var authorOld = _authorGateway.GetById(id);
+            if (authorOld is null)
+            {
+                return BadRequest("Author Not Found");
+            }
 
-    [HttpDelete("{id:int}"), ActionName("DeleteById")]
+            Author author;
+            author = new Author(authorOld.Id, dto.GivenName, dto.FamilyName, dto.BirthDate);
+            _authorGateway.Update(author);
+
+            return Ok(id);
+        }
+        catch
+        {
+            return Problem();
+        }
+    }
+
+    // DELETE
+    [HttpDelete("{id:int}"), ActionName(nameof(DeleteById))]
     public IActionResult DeleteById([FromRoute] int id)
     {
         try
@@ -194,8 +211,7 @@ public class AuthorController : ControllerBase
         }
     }
 
-
-    [HttpDelete("{id:int}"), ActionName("DeleteAuthorById")]
+    [HttpDelete("{id:int}"), ActionName(nameof(DeleteAuthorById))]
     public IActionResult DeleteAuthorById([FromRoute] int id)
     {
         try
@@ -209,30 +225,6 @@ public class AuthorController : ControllerBase
                 _authorGateway.DeleteAuthor(id);
                 return StatusCode(200);
             }
-        }
-        catch
-        {
-            return Problem();
-        }
-    }
-
-
-    [HttpPut("{id:int}"), ActionName("PutById")]
-    public IActionResult PutById([FromRoute] int id, [FromBody] AuthorDto authorDto)
-    {
-        try
-        {
-            var authorOld = _authorGateway.GetById(id);
-            if (authorOld is null)
-            {
-                return BadRequest("Author Not Found");
-            }
-
-            Author author;
-            author = new Author(authorOld.Id, authorDto.GivenName, authorDto.FamilyName, authorDto.BirthDate);
-            _authorGateway.Update(author);
-
-            return Ok(id);
         }
         catch
         {

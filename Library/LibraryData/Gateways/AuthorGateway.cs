@@ -4,23 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using Abstract;
 using Data;
 using Models;
-
+using Models.Extensions;
 
 public class AuthorGateway : IAuthorGateway
 {
     private readonly LibraryContext _context;
 
-    public AuthorGateway(LibraryContext context) => _context = context;
+    public AuthorGateway(LibraryContext context) 
+    {
+	    _context = context; 
+    }
 
-
+    // GET
     public IEnumerable<Author> GetAll()
     {
         var authors = _context.Authors.AsNoTracking();
         return authors;
     }
 
-
-    public IEnumerable<Author>? GetAllEntities()
+    public IEnumerable<Author>? GetAllAuthors()
     {
         var books = _context.Books.AsNoTracking().Include(b => b.Author);
         if (books is null) return null;
@@ -29,35 +31,11 @@ public class AuthorGateway : IAuthorGateway
         return (IQueryable<Author>?) authors.Distinct();
     }
 
-
-    public IEnumerable<Author>? GetEntitiesByPage(int size, int page)
+    public IEnumerable<Author>? GetByPage(int size, int page)
     {
         var authors = _context.Authors.AsNoTracking();
         return authors.Skip(size * page).Take(size);
     }
-
-
-    public IEnumerable<Author>? GetByIds(IEnumerable<int> ids)
-    {
-        var authors = _context.Authors.AsNoTracking();
-        int found;
-        foreach (var author in authors)
-        {
-            found = 0;
-            foreach (var id in ids)
-            {
-                if (author.Id == id)
-                {
-                    found++;
-                    yield return author;
-                }
-                else continue;
-            }
-            if (found != 1) throw new Exception("Null Entity");
-            found = 0;
-        }
-    }
-
 
     public Author? GetById(int id)
     {
@@ -65,10 +43,19 @@ public class AuthorGateway : IAuthorGateway
         return author;
     }
 
+    public Author? GetAuthorById(int id)
+    {
+        var authors = GetAllAuthors();
+        if (authors is null) return null;
+        var author = authors.SingleOrDefault(a => a.Id == id);
+        return author;
+    }
 
+    // INSERT
     public Author Insert(Author entity)
     {
         if (entity.Id is not null) throw new Exception("Not Null Id");
+        if (!entity.IsValid()) throw new Exception("Not Author");
 
         var author = _context.Authors.Add(entity);
         _context.SaveChanges();
@@ -76,10 +63,11 @@ public class AuthorGateway : IAuthorGateway
         return author.Entity;
     }
 
-
     public IEnumerable<Author>? InsertMulti(IEnumerable<Author>? entities)
     {
-        if (entities.Any(e => e.Id != null)) throw new Exception("Not Null Id");
+        if (entities is null) throw new Exception("No Entities");
+        if (entities.Any(e => e.Id != null)) throw new Exception("Not Null Ids");
+        if (entities.Any(e => !e.IsValid())) throw new Exception("Not Authors");
 
         var books = new List<Author >();
         foreach (var entity in entities)
@@ -91,21 +79,24 @@ public class AuthorGateway : IAuthorGateway
         return books;
     }
 
-
+    // UPDATE
     public Author Update(Author entity)
     {
         if (entity.Id is null) throw new Exception("Null Id");
+        if (!entity.IsValid()) throw new Exception("Not Author");
+
         var intId = (int) entity.Id;
         var entityOld = GetById(intId);
         if (entityOld is null) throw new Exception("Null Entity");
 
-        var author = _context.Authors.Update(entityOld with { Id = intId, GivenName = entity.GivenName, FamilyName = entity.FamilyName });
+        var entityNew = new Author(intId, entity.GivenName, entity.FamilyName, entity.BirthDate);
+        var author = _context.Authors.Update(entityNew);
         _context.SaveChanges();
 
         return author.Entity;
     }
 
-
+    // DELETE
     public Author Delete(int id)
     {
         var entityOld = GetById(id);
@@ -117,10 +108,9 @@ public class AuthorGateway : IAuthorGateway
         return author.Entity;
     }
 
-
     public Author DeleteAuthor(int id)
     {
-        var authors = GetAllEntities();
+        var authors = GetAllAuthors();
 
         Author? entityOld = null;
         if (authors is not null)

@@ -1,122 +1,122 @@
 ﻿[
     {
-        "isbn": 1000000000000,
-        "authorId": 1,
         "title": "Book1",
-        "publicationYear": "1991-01-01T00:00:00"
+        "publicationDate": "1991-01-01",
+        "authorId": 1,
+        "isbn": "ISBN13-978-0-306-40615-7"
     },
     {
-        "isbn": 1111111111111,
-        "authorId": 1,
         "title": "BlueBook1",
-        "publicationYear": "2001-01-01T00:00:00"
+        "publicationDate": "2001-01-01",
+        "authorId": 1,
+        "isbn": "ISBN13-978-1-84356-028-4"
     },
     {
-        "isbn": 1112223222111,
-        "authorId": 1,
         "title": "GreenBook1",
-        "publicationYear": "2011-01-01T00:00:00"
-    },
-    {
-        "isbn": 1234567654321,
+        "publicationDate": "2011-01-01",
         "authorId": 1,
+        "isbn": "ISBN13-978-0-9767736-6-0"
+    },
+    {
         "title": "RedBook1",
-        "publicationYear": "2021-01-01T00:00:00"
+        "publicationDate": "2021-01-01",
+        "authorId": 1,
+        "isbn": "ISBN13-978-0-13-235088-4"
     },
     {
-        "isbn": 2000000000000,
-        "authorId": 2,
         "title": "Book2",
-        "publicationYear": "1992-02-02T00:00:00"
-    },
-    {
-        "isbn": 2222222222222,
+        "publicationDate": "1992-02-02",
         "authorId": 2,
+        "isbn": "ISBN13-978-0-201-53082-1"
+    },
+    {
         "title": "BlueBook2",
-        "publicationYear": "2002-02-02T00:00:00"
+        "publicationDate": "2002-02-02",
+        "authorId": 2,
+        "isbn": "ISBN13-978-0-7356-4877-1"
     },
     {
-        "isbn": 3000000000000,
-        "authorFullName": 3,
         "title": "Book3",
-        "publicationYear": "1993-03-03T00:00:00"
+        "publicationDate": "1993-03-03",
+        "authorId": 3,
+        "isbn": "ISBN13-978-0-596-52068-7"
     },
     {
-        "isbn": 3333333333333,
-        "authorFullName": 3,
         "title": "BlueBook3",
-        "publicationYear": "2003-03-03T00:00:00"
+        "publicationDate": "2003-03-03",
+        "authorId": 3,
+        "isbn": "ISBN13-978-0-07-352332-3"
     },
     {
-        "isbn": 4000000000000,
-        "authorFullName": 4,
         "title": "Book4",
-        "publicationYear": "1994-04-04T00:00:00"
-    },
-    {
-        "isbn": 4444444444444,
+        "publicationDate": "1994-04-04",
         "authorId": 4,
+        "isbn": "ISBN13-978-0-321-97205-9"
+    },
+    {
         "title": "BlueBook10",
-        "publicationYear": "2004-04-04T00:00:00"
+        "publicationDate": "2004-04-04",
+        "authorId": 4,
+        "isbn": "ISBN13-978-0-13-277289-0"
     },
     {
-        "isbn": 5000000000000,
-        "authorFullName": 5,
         "title": "Book5",
-        "publicationYear": "1995-05-05T00:00:00"
-    },
-    {
-        "isbn": 5555555555555,
+        "publicationDate": "1995-05-05",
         "authorId": 5,
+        "isbn": "ISBN13-978-0-671-02735-3"
+    },
+    {
         "title": "BlueBook5",
-        "publicationYear": "2005-05-05T00:00:00"
+        "publicationDate": "2005-05-05",
+        "authorId": 5,
+        "isbn": "ISBN13-978-0-345-35388-9"
     },
     {
-        "isbn": 6000000000000,
-        "authorFullName": 6,
         "title": "Book6",
-        "publicationYear": "1996-06-06T00:00:00"
-    },
-    {
-        "isbn": 6666666666666,
+        "publicationDate": "1996-06-06",
         "authorId": 6,
+        "isbn": "ISBN13-978-0-14-044924-2"
+    },
+    {
         "title": "BlueBook6",
-        "publicationYear": "2006-06-06T00:00:00"
+        "publicationDate": "2006-06-06",
+        "authorId": 6,
+        "isbn": "ISBN13-978-0-8044-2957-6"
     },
     {
-        "isbn": 7000000000000,
-        "authorFullName": 7,
         "title": "Book7",
-        "publicationYear": "1997-07-07T00:00:00"
-    },
-    {
-        "isbn": 7777777777777,
+        "publicationDate": "1997-07-07",
         "authorId": 7,
+        "isbn": "ISBN13-978-0-06-112241-5"
+    },
+    {
         "title": "BlueBook7",
-        "publicationYear": "2007-07-07T00:00:00"
+        "publicationDate": "2007-07-07",
+        "authorId": 7,
+        "isbn": "ISBN13-978-0-451-17174-7"
     },
     {
-        "isbn": 8000000000000,
-        "authorFullName": 8,
         "title": "Book8",
-        "publicationYear": "1998-08-08T00:00:00"
-    },
-    {
-        "isbn": 8888888888888,
+        "publicationDate": "1998-08-08",
         "authorId": 8,
+        "isbn": "ISBN13-978-0-385-50420-8"
+    },
+    {
         "title": "BlueBook8",
-        "publicationYear": "2008-08-08T00:00:00"
+        "publicationDate": "2008-08-08",
+        "authorId": 8,
+        "isbn": "ISBN13-978-0-399-53536-5"
     },
     {
-        "isbn": 9000000000000,
-        "authorFullName": 9,
         "title": "Book9",
-        "publicationYear": "1999-09-09T00:00:00"
+        "publicationDate": "1999-09-09",
+        "authorId": 9,
+        "isbn": "ISBN13-978-0-553-38108-2"
     },
     {
-        "isbn": 9999999999999,
-        "authorId": 9,
         "title": "BlueBook9",
-        "publicationYear": "2009-09-09T00:00:00"
+        "publicationDate": "2009-09-09",
+        "authorId": 9,
+        "isbn": "ISBN13-978-0-312-14494-8"
     }
 ]

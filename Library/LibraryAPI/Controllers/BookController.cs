@@ -20,8 +20,8 @@ public class BookController : ControllerBase
         _logger = logger;
     }
 
-
-    [HttpGet, ActionName("GetAll")]
+    // GET
+    [HttpGet, ActionName(nameof(GetAll))]
     public IActionResult GetAll()
     {
         try
@@ -33,7 +33,7 @@ public class BookController : ControllerBase
                 return BadRequest("Books Not Found");
             }
 
-            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationYear, b.ISBN));
+            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));
             return Ok(bookDtos);
         }
         catch
@@ -42,42 +42,19 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpGet, ActionName("GetAllBooks")]
-    public IActionResult GetAllBooks()
+    [HttpGet("{size:int}/{page:int}"), ActionName(nameof(GetByPage))]
+    public IActionResult GetByPage([FromRoute] int size, [FromRoute] int page)
     {
         try
         {
-            var books = _bookGateway.GetAllEntities();
-
-            if (books is null)
-            {
-                return BadRequest("Books Not Found");
-            }
-
-            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationYear, b.ISBN));
-            return Ok(bookDtos);
-        }
-        catch
-        {
-            return Problem();
-        }
-    }
-
-
-    [HttpGet("{size:int}/{page:int}"), ActionName("GetBooksByPage")]
-    public IActionResult GetAllBooksByPage([FromRoute] int size, [FromRoute] int page)
-    {
-        try
-        {
-            var books = _bookGateway.GetEntitiesByPage(size, page);
+            var books = _bookGateway.GetByPage(size, page);
 
             if (books is null)
             {
                 return BadRequest("Book Not Found");
             }
 
-            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationYear, b.ISBN));
+            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));
             return Ok(bookDtos);
         }
         catch
@@ -86,8 +63,7 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpGet("{id:int}"), ActionName("GetById")]
+    [HttpGet("{id:int}"), ActionName(nameof(GetById))]
     public IActionResult GetById([FromRoute] int id)
     {
         try
@@ -99,7 +75,7 @@ public class BookController : ControllerBase
                 return BadRequest("Book Not Found");
             }
 
-            var bookDto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationYear, book.ISBN);
+            var bookDto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationDate, book.ISBN);
             return Ok(bookDto);
         }
         catch
@@ -108,20 +84,19 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpGet("{ISBN:int}"), ActionName("GetByISBN")]
-    public IActionResult GetByISBN([FromRoute] int ISBN)
+    [HttpGet("{isbn}"), ActionName(nameof(GetByISBN))]
+    public IActionResult GetByISBN([FromRoute] string isbn)
     {
         try
         {
-            var book = _bookGateway.GetByISBN(ISBN);
+            var book = _bookGateway.GetByISBN(isbn);
 
             if (book is null)
             {
                 return BadRequest("Book Not Found");
             }
 
-            var bookDto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationYear, book.ISBN);
+            var bookDto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationDate, book.ISBN);
             return Ok(bookDto);
         }
         catch
@@ -130,9 +105,9 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpPost, ActionName("PostOne")]
-    public IActionResult Post([FromBody] BookDto bookDto)
+    // POST
+    [HttpPost, ActionName(nameof(PostOne))]
+    public IActionResult PostOne([FromBody] BookDto dto)
     {
         try
         {
@@ -140,7 +115,7 @@ public class BookController : ControllerBase
 
             var count = 0;
             //
-            book = new Book(null, bookDto.Title, bookDto.AuthorId, bookDto.PublicationYear, bookDto.ISBN);
+            book = new Book(null, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate);
             var bookIn = _bookGateway.Insert(book);
             count++;
 
@@ -152,40 +127,15 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpPost, ActionName("PostListWrong")]
-    public IActionResult PostWrong([FromBody] IList<BookDto> bookDtos)
-    {
-        try
-        {
-            Book book;
-
-            var count = 0;
-            foreach (var bookDto in bookDtos)
-            {
-                book = new Book(null, bookDto.Title, bookDto.AuthorId, bookDto.PublicationYear, bookDto.ISBN);
-                _bookGateway.Insert(book);
-                count++;
-	        }
-
-            return Ok(count);
-        }
-        catch
-        {
-            return Problem();
-        }
-    }
-
-
-    [HttpPost, ActionName("PostList")]
-    public IActionResult Post([FromBody] IList<BookDto> bookDtos)
+    [HttpPost, ActionName(nameof(PostMulti))]
+    public IActionResult PostMulti([FromBody] IList<BookDto> dtos)
     {
         try
         {
             var books = new List<Book>();
-            foreach (var bookDto in bookDtos)
+            foreach (var dto in dtos)
             {
-                books.Add(new Book(null, bookDto.Title, bookDto.AuthorId, bookDto.PublicationYear, bookDto.ISBN));
+                books.Add(new Book(null, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate));
             }
             _bookGateway.InsertMulti(books);
             return Ok(books.Count);
@@ -196,21 +146,23 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpDelete("{ISBN:int}"), ActionName("DeleteByISBN")]
-    public IActionResult DeleteByISBN([FromRoute] int ISBN)
+    // PUT
+    [HttpPut("{id:int}"), ActionName(nameof(PutById))]
+    public IActionResult PutById([FromRoute] int id, [FromBody] BookDto dto)
     {
         try
         {
-            if (_bookGateway.GetByISBN(ISBN) is null)
+            var bookOld = _bookGateway.GetById(id);
+            if (bookOld is null)
             {
                 return BadRequest("Book Not Found");
             }
-            else
-            {
-                _bookGateway.DeleteByISBN(ISBN);
-                return StatusCode(200);
-            }
+
+            Book book;
+            book = new Book(bookOld.Id, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate);
+            _bookGateway.Update(book);
+
+            return Ok(id);
         }
         catch
         {
@@ -218,8 +170,31 @@ public class BookController : ControllerBase
         }
     }
 
+    [HttpPut("{isbn}"), ActionName(nameof(PutByISBN))]
+    public IActionResult PutByISBN([FromRoute] string isbn, [FromBody] StandardBookDto dto)
+    {
+        try
+        {
+            var bookOld = _bookGateway.GetByISBN(isbn.ToString());
+            if (bookOld is null)
+            {
+                return BadRequest("Book Not Found");
+            }
 
-    [HttpDelete("{id:int}"), ActionName("DeleteId")]
+            Book book;
+            book = new Book(bookOld.Id, isbn, dto.Title, dto.AuthorId, dto.PublicationDate);
+            _bookGateway.Update(book);
+
+            return Ok(isbn);
+        }
+        catch
+        {
+            return Problem();
+        }
+    }
+
+    // DELETE
+    [HttpDelete("{id:int}"), ActionName(nameof(DeleteById))]
     public IActionResult DeleteById([FromRoute] int id)
     {
         try
@@ -240,47 +215,20 @@ public class BookController : ControllerBase
         }
     }
 
-
-    [HttpPut("{id:int}"), ActionName("PutById")]
-    public IActionResult PutById([FromRoute] int id, [FromBody] BookDto dto)
+    [HttpDelete("{isbn}"), ActionName(nameof(DeleteByISBN))]
+    public IActionResult DeleteByISBN([FromRoute] string isbn)
     {
         try
         {
-            var bookOld = _bookGateway.GetById(id);
-            if (bookOld is null)
+            if (_bookGateway.GetByISBN(isbn) is null)
             {
                 return BadRequest("Book Not Found");
             }
-
-            Book book;
-            book = new Book(bookOld.Id, dto.Title, dto.AuthorId, dto.PublicationYear, dto.ISBN);
-            _bookGateway.Update(book);
-
-            return Ok(id);
-        }
-        catch
-        {
-            return Problem();
-        }
-    }
-
-
-    [HttpPut("{ISBN:int}"), ActionName("PutByISBN")]
-    public IActionResult PutByISBN([FromRoute] int ISBN, [FromBody] StandardBookDto dto)
-    {
-        try 
-	    {
-            var bookOld = _bookGateway.GetByISBN(ISBN);
-            if (bookOld is null)
+            else
             {
-                return BadRequest("Book Not Found");
+                _bookGateway.DeleteByISBN(isbn.ToString());
+                return StatusCode(200);
             }
-
-            Book book;
-            book = new Book(bookOld.Id, dto.Title, dto.AuthorId, dto.PublicationYear, ISBN);
-            _bookGateway.Update(book);
-
-            return Ok(ISBN);
         }
         catch
         {

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿namespace LibraryData.Data;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using LibraryData.Models;
+using Configurations;
+using Models;
 
-namespace LibraryData.Data;
 
 public partial class LibraryContext : DbContext
 {
@@ -20,12 +21,12 @@ public partial class LibraryContext : DbContext
     // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //   => optionsBuilder.UseSqlServer("Connection String");
 
-    // protected override void OnModelCreating(ModelBuilder modelBuilder) 
-    // { modelBuilder.ApplyConfiguration(new MessagesConfiguration()); modelBuilder.ApplyConfiguration(new AuthorsConfiguration()); }
+    protected override void OnModelCreating(ModelBuilder modelBuilder) 
+    { 
+	    modelBuilder.ApplyConfiguration(new BooksConfiguration()); 
+	    modelBuilder.ApplyConfiguration(new AuthorsConfiguration());
+    }
 }
-
-
-
 
 // ADD BEFORE THE INITIAL MIGRATION 
 // REMOVE AFTER THE INITIAL MIGRATION
