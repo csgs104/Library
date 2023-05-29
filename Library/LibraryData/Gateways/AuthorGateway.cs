@@ -6,6 +6,7 @@ using Data;
 using Models;
 using Models.Extensions;
 using static System.Reflection.Metadata.BlobBuilder;
+using System.Drawing;
 
 public class AuthorGateway : IAuthorGateway
 {
@@ -35,9 +36,10 @@ public class AuthorGateway : IAuthorGateway
     public IEnumerable<Author>? GetByPage(int size, int page)
     {
         var authors = _context.Authors.AsNoTracking();
-        if (size * page >= authors.Count()) return null;
-
-        var output = authors.Skip(size * page);
+        if (size <= 0) return null;
+        if ((page - 1) < 0) return null;
+        if ((page - 1) > 0 && (page - 1) * size >= authors.Count()) return null;
+        var output = (page - 1) == 0 ? authors : authors.Skip(size * (page - 1));
         var pagesize = output.Count();
         return output.Take(pagesize < size ? pagesize : size);
     }
@@ -89,11 +91,9 @@ public class AuthorGateway : IAuthorGateway
     {
         if (entity.Id is null) throw new Exception("Null Id");
         if (!entity.IsValid()) throw new Exception("Not Author");
-
         var intId = (int) entity.Id;
         var entityOld = GetById(intId);
         if (entityOld is null) throw new Exception("Null Entity");
-
         var entityNew = new Author(intId, entity.GivenName, entity.FamilyName, entity.BirthDate);
         var author = _context.Authors.Update(entityNew);
         _context.SaveChanges();
@@ -106,17 +106,14 @@ public class AuthorGateway : IAuthorGateway
     {
         var entityOld = GetById(id);
         if (entityOld is null) throw new Exception("Null Entity");
-
         var author = _context.Authors.Remove(entityOld);
         _context.SaveChanges();
-
         return author.Entity;
     }
 
     public Author DeleteAuthor(int id)
     {
         var authors = GetAllAuthors();
-
         Author? entityOld = null;
         if (authors is not null)
         {
@@ -127,12 +124,9 @@ public class AuthorGateway : IAuthorGateway
         { 
 	        entityOld = GetById(id); 
 	    }
-
         if (entityOld is null) throw new Exception("Null Entity");
-
         var author = _context.Authors.Remove(entityOld);
         _context.SaveChanges();
-
         return author.Entity;
     }
 }

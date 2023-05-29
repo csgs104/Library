@@ -4,6 +4,7 @@ using DtoModels;
 using LibraryData.Models;
 using LibraryData.Gateways.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using LibraryData.Gateways;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
@@ -25,18 +26,13 @@ public class AuthorController : ControllerBase
         try
         {
             var authors = _authorGateway.GetAll();
-
-            if (authors is null)
-            {
-                return BadRequest("Authors Not Found");
-            }
-
+            if (authors is null) return BadRequest("Authors Not Found");
             var authorsDtos = authors.Select(a => new AuthorDto(a.GivenName, a.FamilyName, a.BirthDate));
             return Ok(authorsDtos);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -46,18 +42,13 @@ public class AuthorController : ControllerBase
         try
         {
             var authors = _authorGateway.GetAllAuthors();
-
-            if (authors is null)
-            {
-                return BadRequest("Authors Not Found");
-            }
-
+            if (authors is null) return BadRequest("Authors Not Found");
             var authorsDtos = authors.Select(a => new AuthorDto(a.GivenName, a.FamilyName, a.BirthDate));
             return Ok(authorsDtos);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -67,18 +58,13 @@ public class AuthorController : ControllerBase
         try
         {
             var authors = _authorGateway.GetByPage(size, page);
-
-            if (authors is null)
-            {
-                return BadRequest("Authors Not Found");
-            }
-
+            if (authors is null) return BadRequest("Authors Not Found");
             var authorsDtos = authors.Select(a => new AuthorDto(a.GivenName, a.FamilyName, a.BirthDate));
             return Ok(authorsDtos);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -88,18 +74,13 @@ public class AuthorController : ControllerBase
         try
         {
             var author = _authorGateway.GetById(id);
-
-            if (author is null)
-            {
-                return BadRequest("Author Not Found");
-            }
-
+            if (author is null) return BadRequest("Author Not Found");
             var authorDto = new AuthorDto(author.GivenName, author.FamilyName, author.BirthDate);
             return Ok(authorDto);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -109,18 +90,13 @@ public class AuthorController : ControllerBase
         try
         {
             var author = _authorGateway.GetAuthorById(id);
-
-            if (author is null)
-            {
-                return BadRequest("Author Not Found");
-            }
-
+            if (author is null) return BadRequest("Author Not Found");
             var authorDto = new AuthorDto(author.GivenName, author.FamilyName, author.BirthDate);
             return Ok(authorDto);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -131,18 +107,13 @@ public class AuthorController : ControllerBase
         try
         {
             Author author;
-
-            var count = 0;
-            //
             author = new Author(null, dto.GivenName, dto.FamilyName, dto.BirthDate);
             var authorIn = _authorGateway.Insert(author);
-            count++;
-
-            return Ok(count);
+            return Ok(1);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -152,16 +123,13 @@ public class AuthorController : ControllerBase
         try
         {
             var authors = new List<Author>();
-            foreach (var dto in dtos)
-            {
-                authors.Add(new Author(null, dto.GivenName, dto.FamilyName, dto.BirthDate));
-            }
+            foreach (var dto in dtos) authors.Add(new Author(null, dto.GivenName, dto.FamilyName, dto.BirthDate));
             _authorGateway.InsertMulti(authors);
             return Ok(authors.Count);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -172,20 +140,15 @@ public class AuthorController : ControllerBase
         try
         {
             var authorOld = _authorGateway.GetById(id);
-            if (authorOld is null)
-            {
-                return BadRequest("Author Not Found");
-            }
-
+            if (authorOld is null) return BadRequest("Author Not Found");
             Author author;
             author = new Author(authorOld.Id, dto.GivenName, dto.FamilyName, dto.BirthDate);
             _authorGateway.Update(author);
-
             return Ok(id);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -195,19 +158,14 @@ public class AuthorController : ControllerBase
     {
         try
         {
-            if (_authorGateway.GetById(id) is null)
-            {
-                return BadRequest("Authur Not Found");
-            }
-            else
-            {
-                _authorGateway.Delete(id);
-                return StatusCode(200);
-            }
+            var authorOld = _authorGateway.GetById(id);
+            if (authorOld is null) return BadRequest("Authur Not Found");
+            _authorGateway.Delete(id);
+             return StatusCode(200);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -216,19 +174,14 @@ public class AuthorController : ControllerBase
     {
         try
         {
-            if (_authorGateway.GetById(id) is null)
-            {
-                return BadRequest("Authur Not Found");
-            }
-            else
-            {
-                _authorGateway.DeleteAuthor(id);
-                return StatusCode(200);
-            }
+            var authorOld = _authorGateway.GetById(id);
+            if (authorOld is null) return BadRequest("Authur Not Found");
+            _authorGateway.DeleteAuthor(id);
+            return StatusCode(200);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 }

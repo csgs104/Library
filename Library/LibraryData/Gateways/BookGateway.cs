@@ -26,14 +26,15 @@ public class BookGateway : IBookGateway
     public IEnumerable<Book>? GetByPage(int size, int page)
     {
         var books = _context.Books.AsNoTracking().Include(b => b.Author);
-        if (size * page >= books.Count()) return null;
-
-        var output = books.Skip(size * page);
+        if (size <= 0) return null;
+        if ((page - 1) < 0) return null;
+        if ((page - 1) > 0 && (page - 1) * size >= books.Count()) return null;
+        var output = (page - 1) == 0 ? books : books.Skip(size * (page - 1));
         var pagesize = output.Count();
         return output.Take(pagesize < size ? pagesize : size);
     }
 
-    public Book? GetById(int id)
+    public Book? GetById(int id) 
     {
         var book = _context.Books.AsNoTracking().Include(b => b.Author).SingleOrDefault(b => b.Id == id);
         return book;
@@ -48,14 +49,13 @@ public class BookGateway : IBookGateway
     // INSERT
     public Book Insert(Book entity)
     {
+        if (entity is null) throw new Exception("No Entity");
         if (entity.Id is not null) throw new Exception("Not Null Id");
         if (!entity.IsValid()) throw new Exception("Not Book");
-
+        if (_context.Books.Any(b => b.ISBN == entity.ISBN)) throw new Exception("Existing Entity");
         if (!_context.Authors.Any(a => a.Id == entity.AuthorId)) throw new Exception("Not Author Id");
-
         var book = _context.Books.Add(entity);
         _context.SaveChanges();
-
         return book.Entity;
     }
 
@@ -64,16 +64,11 @@ public class BookGateway : IBookGateway
         if (entities is null) throw new Exception("No Entities");
         if (entities.Any(e => e.Id != null)) throw new Exception("Not Null Ids");
         if (entities.Any(e => !e.IsValid())) throw new Exception("Not Authors");
-
-        foreach (var entity in entities) if (!_context.Authors.Any(a => a.Id == entity.AuthorId)) throw new Exception("Not Author Id");
-
+        foreach (var entity in entities) if (_context.Books.Any(b => b.ISBN == entity.ISBN)) throw new Exception("Existing Entities");
+        foreach (var entity in entities) if (!_context.Authors.Any(a => a.Id == entity.AuthorId)) throw new Exception("Not Authors Id");
         var books = new List<Book>();
-        foreach (var entity in entities)
-        {
-            books.Add(_context.Books.Add(entity).Entity);
-        }
+        foreach (var entity in entities) books.Add(_context.Books.Add(entity).Entity);
         _context.SaveChanges();
-
         return books;
     }
 
@@ -82,18 +77,15 @@ public class BookGateway : IBookGateway
     {
         if (entity.Id is null) throw new Exception("Null Id");
         if (!entity.IsValid()) throw new Exception("Not Book");
-
         if (!_context.Authors.Any(a => a.Id == entity.AuthorId)) throw new Exception("Not Author Id");
-
         var intId = (int) entity.Id;
         var entityOld = GetById(intId);
         if (entityOld is null) throw new Exception("Null Entity");
-
+        if (entity.ISBN != entityOld.ISBN && _context.Books.Any(b => b.ISBN == entity.ISBN)) throw new Exception("Existing Entities");
         var entityNew = new Book(intId, entity.ISBN, entity.Title, entity.AuthorId, entity.PublicationDate);
         var message = _context.Books.Update(entityNew);
         _context.SaveChanges();
         message.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entity.AuthorId);
-
         return message.Entity;
     }
 
@@ -102,11 +94,9 @@ public class BookGateway : IBookGateway
     {
         var entityOld = GetById(id);
         if (entityOld is null) throw new Exception("Null Entity");
-
         var message = _context.Books.Remove(entityOld);
         _context.SaveChanges();
         message.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entityOld.AuthorId);
-
         return message.Entity;
     }
 
@@ -114,11 +104,9 @@ public class BookGateway : IBookGateway
     {
         var entityOld = GetByISBN(isbn);
         if (entityOld is null) throw new Exception("Null Entity");
-
         var message = _context.Books.Remove(entityOld);
         _context.SaveChanges();
         message.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entityOld.AuthorId);
-
         return message.Entity;
     }
 }

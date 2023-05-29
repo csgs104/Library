@@ -27,18 +27,13 @@ public class BookController : ControllerBase
         try
         {
             var books = _bookGateway.GetAll();
-
-            if (books is null)
-            {
-                return BadRequest("Books Not Found");
-            }
-
-            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));
-            return Ok(bookDtos);
+            if (books is null) return BadRequest("Books Not Found");
+            var dtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));
+            return Ok(dtos);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -48,18 +43,13 @@ public class BookController : ControllerBase
         try
         {
             var books = _bookGateway.GetByPage(size, page);
-
-            if (books is null)
-            {
-                return BadRequest("Books Not Found");
-            }
-
-            var bookDtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));
-            return Ok(bookDtos);
+            if (books is null) return BadRequest("Books Not Found");
+            var dtos = books.Select(b => new AuthenticBookDto(b.Title, $"{b.Author!.GivenName} {b.Author!.FamilyName}", b.PublicationDate, b.ISBN));
+            return Ok(dtos);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -69,18 +59,13 @@ public class BookController : ControllerBase
         try
         {
             var book = _bookGateway.GetById(id);
-
-            if (book is null)
-            {
-                return BadRequest("Book Not Found");
-            }
-
-            var bookDto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationDate, book.ISBN);
-            return Ok(bookDto);
+            if (book is null) return BadRequest("Book Not Found");
+            var dto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationDate, book.ISBN);
+            return Ok(dto);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -90,18 +75,13 @@ public class BookController : ControllerBase
         try
         {
             var book = _bookGateway.GetByISBN(isbn);
-
-            if (book is null)
-            {
-                return BadRequest("Book Not Found");
-            }
-
-            var bookDto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationDate, book.ISBN);
-            return Ok(bookDto);
+            if (book is null) return BadRequest("Book Not Found");
+            var dto = new AuthenticBookDto(book.Title, $"{book.Author!.GivenName} {book.Author!.FamilyName}", book.PublicationDate, book.ISBN);
+            return Ok(dto);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -112,18 +92,13 @@ public class BookController : ControllerBase
         try
         {
             Book book;
-
-            var count = 0;
-            //
             book = new Book(null, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate);
-            var bookIn = _bookGateway.Insert(book);
-            count++;
-
-            return Ok(count);
+            _bookGateway.Insert(book);
+            return Ok(1);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -133,16 +108,13 @@ public class BookController : ControllerBase
         try
         {
             var books = new List<Book>();
-            foreach (var dto in dtos)
-            {
-                books.Add(new Book(null, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate));
-            }
+            foreach (var dto in dtos) books.Add(new Book(null, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate));
             _bookGateway.InsertMulti(books);
             return Ok(books.Count);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -153,20 +125,15 @@ public class BookController : ControllerBase
         try
         {
             var bookOld = _bookGateway.GetById(id);
-            if (bookOld is null)
-            {
-                return BadRequest("Book Not Found");
-            }
-
+            if (bookOld is null) return BadRequest("Book Not Found");
             Book book;
             book = new Book(bookOld.Id, dto.ISBN, dto.Title, dto.AuthorId, dto.PublicationDate);
             _bookGateway.Update(book);
-
             return Ok(id);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -175,21 +142,16 @@ public class BookController : ControllerBase
     {
         try
         {
-            var bookOld = _bookGateway.GetByISBN(isbn.ToString());
-            if (bookOld is null)
-            {
-                return BadRequest("Book Not Found");
-            }
-
+            var bookOld = _bookGateway.GetByISBN(isbn);
+            if (bookOld is null) return BadRequest("Book Not Found");
             Book book;
             book = new Book(bookOld.Id, isbn, dto.Title, dto.AuthorId, dto.PublicationDate);
             _bookGateway.Update(book);
-
             return Ok(isbn);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -199,19 +161,14 @@ public class BookController : ControllerBase
     {
         try
         {
-            if (_bookGateway.GetById(id) is null)
-            {
-                return BadRequest("Book Not Found");
-            }
-            else
-            {
-                _bookGateway.Delete(id);
-                return StatusCode(200);
-            }
+            var bookOld = _bookGateway.GetById(id);
+            if (bookOld is null) return BadRequest("Book Not Found");
+            _bookGateway.Delete(id);
+            return StatusCode(200);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 
@@ -220,19 +177,14 @@ public class BookController : ControllerBase
     {
         try
         {
-            if (_bookGateway.GetByISBN(isbn) is null)
-            {
-                return BadRequest("Book Not Found");
-            }
-            else
-            {
-                _bookGateway.DeleteByISBN(isbn.ToString());
-                return StatusCode(200);
-            }
+            var bookOld = _bookGateway.GetByISBN(isbn);
+            if (bookOld is null) return BadRequest("Book Not Found");
+            _bookGateway.DeleteByISBN(isbn);
+            return StatusCode(200);
         }
-        catch
+        catch (Exception ex)
         {
-            return Problem();
+            return Problem(ex.Message);
         }
     }
 }

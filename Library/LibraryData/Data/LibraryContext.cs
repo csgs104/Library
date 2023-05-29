@@ -28,6 +28,8 @@ public partial class LibraryContext : DbContext
     }
 }
 
+/*
+
 // ADD BEFORE THE INITIAL MIGRATION 
 // REMOVE AFTER THE INITIAL MIGRATION
 
@@ -36,8 +38,10 @@ public class LibraryContextFactory : IDesignTimeDbContextFactory<LibraryContext>
     public LibraryContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
-        optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=Library;User ID=SA;Password=R00t.r00T;Encrypt=True;TrustServerCertificate=True;Connection Timeout=180;");
+        optionsBuilder.UseSqlServer("ConnectionString");
 
         return new LibraryContext(optionsBuilder.Options);
     }
 }
+
+*/
