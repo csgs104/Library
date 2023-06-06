@@ -83,10 +83,10 @@ public class BookGateway : IBookGateway
         if (entityOld is null) throw new Exception("Null Entity");
         if (entity.ISBN != entityOld.ISBN && _context.Books.Any(b => b.ISBN == entity.ISBN)) throw new Exception("Existing Entities");
         var entityNew = new Book(intId, entity.ISBN, entity.Title, entity.AuthorId, entity.PublicationDate);
-        var message = _context.Books.Update(entityNew);
+        var book = _context.Books.Update(entityNew);
         _context.SaveChanges();
-        message.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entity.AuthorId);
-        return message.Entity;
+        book.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entity.AuthorId);
+        return book.Entity;
     }
 
     // DELETE
@@ -94,19 +94,19 @@ public class BookGateway : IBookGateway
     {
         var entityOld = GetById(id);
         if (entityOld is null) throw new Exception("Null Entity");
-        var message = _context.Books.Remove(entityOld);
+        var book = _context.Books.Remove(entityOld);
         _context.SaveChanges();
-        message.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entityOld.AuthorId);
-        return message.Entity;
+        book.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entityOld.AuthorId);
+        return book.Entity;
     }
 
     public Book DeleteByISBN(string isbn)
     {
         var entityOld = GetByISBN(isbn);
         if (entityOld is null) throw new Exception("Null Entity");
-        var message = _context.Books.Remove(entityOld);
+        var book = _context.Books.Remove(entityOld);
         _context.SaveChanges();
-        message.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entityOld.AuthorId);
-        return message.Entity;
+        book.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(a => a.Id == entityOld.AuthorId);
+        return book.Entity;
     }
 }
