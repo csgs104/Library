@@ -1,10 +1,8 @@
 ﻿namespace LibraryData.Data;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Configurations;
 using Models;
-
 
 public partial class LibraryContext : DbContext
 {

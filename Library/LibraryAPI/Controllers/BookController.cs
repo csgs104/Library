@@ -1,11 +1,9 @@
 ﻿namespace LibraryAPI.Controllers;
 
-using System.Linq;
 using DtoModels;
 using LibraryData.Models;
 using LibraryData.Gateways.Abstract;
 using Microsoft.AspNetCore.Mvc;
-using LibraryData.Gateways;
 
 [ApiController]
 [Route("api/[controller]/[action]")]

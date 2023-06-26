@@ -5,8 +5,6 @@ using Abstract;
 using Data;
 using Models;
 using Models.Extensions;
-using static System.Reflection.Metadata.BlobBuilder;
-using System.Drawing;
 
 public class AuthorGateway : IAuthorGateway
 {

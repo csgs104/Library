@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Abstract;
 using Data;
 using Models;
-using System.Linq;
-using LibraryData.Models.Extensions;
+using Models.Extensions;
 
 public class BookGateway : IBookGateway
 {

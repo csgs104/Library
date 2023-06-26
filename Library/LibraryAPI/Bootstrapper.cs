@@ -9,7 +9,6 @@ public static class Bootstrapper
     {
         var provider = app.Services.CreateScope();
         var context = provider.ServiceProvider.GetRequiredService<LibraryContext>();
-
         await context.Database.MigrateAsync();
     }
 }

@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace LibraryData.Configurations;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace LibraryData.Configurations;
-
 using Models;
 
 public class BooksConfiguration : IEntityTypeConfiguration<Book>
